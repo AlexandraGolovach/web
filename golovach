@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор BMI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffeef8; /* Нежно-розовый фон */
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            margin-right: 20px;
+        }
+        .norms {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 600px; /* Увеличиваем ширину таблицы */
+            max-width: 90%;
+        }
+        h2 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 300px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            background: #ff4081; /* Ярко-розовая кнопка */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #ff1f5b; /* Темнее при наведении */
+        }
+        #result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00796b;
+            margin-top: 10px;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: #1976D2; /* Цвет кнопки "Назад" */
+        }
+        .back-button:hover {
+            background: #0d47a1; /* Темнее при наведении */
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+        .formula {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .norms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .norms-table th, .norms-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .norms-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Калькулятор BMI</h2>
+    
+        <label for="weight">Вес (кг):</label>
+        <input id="weight" type="number" placeholder="Введите вес" step="any"><br>
+
+        <label for="height">Рост (м):</label>
+        <input id="height" type="number" placeholder="Введите рост" step="any"><br>
+
+        <button onclick="calculateBMI()">Вычислить BMI</button>
+
+        <p id="result"></p>
+
+        <p class="formula">Формула: BMI = вес (кг) / (рост (м) * рост (м))</p>
+
+        <a href="/index.html" class="back-button">← Назад</a>
+
+        <div class="footer">
+            Выполнила: Головач Александра, группа 1152
+        </div>
+    </div>
+
+    <div class="norms">
+        <h2>Нормы ИМТ</h2>
+        <table class="norms-table">
+            <thead>
+                <tr>
+                    <th>Пол</th>
+                    <th>Рост (м)</th>
+                    <th>Вес (кг)</th>
+                    <th>ИМТ (кг/м²)</th>
+                    <th>Категория</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="5">Мужчины</td>
+                    <td>1.60</td>
+                    <td>45 - 60</td>
+                    <td>17.6 - 23.4</td>
+                    <td>Недостаточный - Нормальный вес</td>
+                </tr>
+                <tr>
+                    <td>1.70</td>
+                    <td>54 - 72</td>
+                    <td>18.7 - 24.9</td>
+                    <td>Недостаточный - Нормальный вес</td>
+                </tr>
+                <tr>
+                    <td>1.80</td>
+                    <td>63 - 81</td>
+                    <td>19.4 - 24.9</td>
+                    <td>Недостаточный - Нормальный вес</td>
+                </tr>
+                <tr>
+                    <td>1.90</td>
+                    <td>72 - 90</td>
+                    <td>19.9 - 24.9</td>
+                    <td>Недостаточный - Нормальный вес</td>
+                </tr>
+                <tr>
+                    <td>1.95</td>
+                    <td>80 - 100</td>
+                    <td>20.9 - 26.1</td>
+                    <td>Недостаточный - Нормальный вес</td>
+                </tr>
+                <tr>
+                    <td rowspan="5">Женщины</td>
+                    <td>1.50</td>
+                    <td>40 - 55</td>
+                    <td>17.8 - 24.4</td>
+                    <td>Недостаточный - Нормальный вес</td>
+                </tr>
+                <tr>
+                    <td>1.60</td>
+                    <td>50 - 65</td>
+                    <td>19.5 - 25.4</td>
+                    <td>Недостаточный - Нормальный вес</td>
+                </tr>
+                <tr>
+                    <td>1.70</td>
+                    <td>60 - 75</td>
+                    <td>20.8 - 25.9</td>
+                    <td>Недостаточный - Нормальный вес</td>
+                </tr>
+                <tr>
+                    <td>1.80</td>
+                    <td>70 - 85</td>
+                    <td>21.6 - 26.2</td>
+                    <td>Недостаточный - Нормальный вес</td>
+                </tr>
+                <tr>
+                    <td>1.90</td>
+                    <td>80 - 95</td>
+                    <td>22.2 - 26.4</td>
+                    <td>Недостаточный - Нормальный вес</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            let weight = parseFloat(document.getElementById("weight").value);
+            let height = parseFloat(document.getElementById("height").value);
+            if (isNaN(weight) || weight <= 0 || isNaN(height) || height <= 0) {
+                document.getElementById("result").textContent = "Пожалуйста, введите корректные значения (вес и рост должны быть больше 0)";
+                return;
+            }
+            let bmi = weight / (height * height);
+            let category;
+            if (bmi < 18.5) {
+                category = "Недостаточный вес";
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                category = "Нормальный вес";
+            } else if (bmi >= 25 && bmi < 29.9) {
+                category = "Избыточный вес";
+            } else {
+                category = "Ожирение";
+            }
+            document.getElementById("result").textContent = "Ваш BMI: " + bmi.toFixed(2) + " (" + category + ")";
+        }
+    </script>
+</body>
+</html>
